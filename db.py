@@ -6,8 +6,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, sessionmaker
 
+from .models import Base
+
 engine = create_engine(
-    "sqlite:///anony_handler.db",
+    "sqlite:///test.db",
     connect_args={"check_same_thread": False},
     echo=True,
 )
@@ -19,6 +21,10 @@ SessionLocal = sessionmaker(
 
 def get_db() -> Session:
     return SessionLocal()
+
+
+def init_db():
+    Base.metadata.create_all(engine)
 
 
 @contextmanager
@@ -35,8 +41,8 @@ def session_scope():
 
 def db_access(util: Callable):
     @functools.wraps(util)
-    async def inject_db(*args, **kwrags):
+    def inject_db(*args, **kwrags):
         with session_scope() as db:
-            return await util(*args, db=db, **kwrags)
+            return util(*args, db=db, **kwrags)
 
     return inject_db

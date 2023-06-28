@@ -1,8 +1,8 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from sqlalchemy.orm import Session
 
-from db import db_access
-from models import Restaurant
+from .db import db_access
+from .models import Restaurant
 
 restaurant_bp = Blueprint("restaurant", __name__, url_prefix="/restaurant")
 

@@ -1,5 +1,6 @@
+from typing import List
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -20,6 +21,8 @@ class Restaurant(Base):
     phone: Mapped[str] = mapped_column()
     website: Mapped[str] = mapped_column()
 
+    foods: Mapped[List["Food"]] = relationship("Food", back_populates="restaurant")
+
 
 class Food(Base):
     __tablename__ = "foods"
@@ -28,7 +31,8 @@ class Food(Base):
     restaurant_id: Mapped[int] = mapped_column(ForeignKey("restaurants.id"))
     price: Mapped[int] = mapped_column()
 
-    orders: Mapped["Order"] = mapped_column(ForeignKey("orders.food_id"))
+    orders: Mapped[List["Order"]] = relationship("Order", back_populates="food")
+    restaurant: Mapped[Restaurant] = relationship("Restaurant", back_populates="foods")
 
 
 class Order(Base):
@@ -36,12 +40,11 @@ class Order(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     food_id: Mapped[int] = mapped_column(ForeignKey("foods.id"))
     quantity: Mapped[int] = mapped_column()
-    price: Mapped[int] = mapped_column()
     status: Mapped[str] = mapped_column()
     customer_id: Mapped[int] = mapped_column(ForeignKey("customers.id"))
 
-    customer: Mapped["Customer"] = mapped_column(ForeignKey("customers.id"))
-    food: Mapped[Food] = mapped_column(ForeignKey("foods.id"))
+    customer: Mapped["Customer"] = relationship(back_populates="orders")
+    food: Mapped[Food] = relationship(back_populates="orders")
 
 
 class Customer(Base):
@@ -51,4 +54,4 @@ class Customer(Base):
     phone: Mapped[str] = mapped_column()
     password: Mapped[str] = mapped_column()
 
-    orders: Mapped[Order] = mapped_column(ForeignKey("orders.customer_id"))
+    orders: Mapped[Order] = relationship(back_populates="customer")
