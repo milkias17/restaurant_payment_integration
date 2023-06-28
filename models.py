@@ -49,5 +49,6 @@ class Customer(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column()
     phone: Mapped[str] = mapped_column()
+    password: Mapped[str] = mapped_column()
 
     orders: Mapped[Order] = mapped_column(ForeignKey("orders.customer_id"))
