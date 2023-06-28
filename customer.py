@@ -1,9 +1,8 @@
-from flask import Blueprint, redirect, render_template, request, session, url_for
+from flask import Blueprint, request, redirect, url_for, render_template
+from .models import Customer
+from .db import db_access
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-
-from .db import db_access
-from .models import Customer
 
 customer_bp = Blueprint("customer", __name__, url_prefix="/customer")
 

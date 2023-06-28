@@ -1,5 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 
 from .db import db_access
 from .models import Restaurant
@@ -27,3 +28,19 @@ def register(db: Session = None):
         return redirect(url_for("home"))
     else:
         return render_template("register_restaurant.html")
+    
+
+
+@restaurant_bp.route("/", methods=["GET", "POST"])
+@db_access
+def list_restaurants(db):
+    if request.method == "GET":
+        stmt = select(Restaurant).all()
+        res = db.scalars(stmt)
+        if res:
+            return redirect(url_for("home"))
+        
+    return render_template("register_restaurant.html")
+
+
+
