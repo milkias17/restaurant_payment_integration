@@ -40,7 +40,6 @@ class Order(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     food_id: Mapped[int] = mapped_column(ForeignKey("foods.id"))
     quantity: Mapped[int] = mapped_column()
-    status: Mapped[str] = mapped_column()
     customer_id: Mapped[int] = mapped_column(ForeignKey("customers.id"))
 
     customer: Mapped["Customer"] = relationship(back_populates="orders")

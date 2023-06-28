@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginPage.css' ) }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Montserrat:wght@500;700&family=Outfit:wght@400;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <form method="post" class="container">
+      <p class="title">LOGIN</p>
+      <div class="user-login-input">
+        <p class="declarative-text">Phone Number</p>
+        <input class="input-phone-number" type="textbox" name="phone"/>
+        <p class="declarative-text">Password</p>
+        <input class="input-password" type="textbox" name="password" />
+      </div>
+      <div class="confirm-login">
+        <button class="login-button" type="submit">LOGIN</button>
+        <!-- <p>Forgot Password?</p> -->
+        <hr />
+        <p>Need an account? <span>SIGN UP</span></p>
+      </div>
+    </div>
+  </body>
+</html>

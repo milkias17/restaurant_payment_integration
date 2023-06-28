@@ -1,0 +1,59 @@
+body{
+  display: flex;
+  justify-content: center;
+  padding: 200px;
+  background-color: lightblue;
+  font-family: Roboto,Arial, Helvetica, sans-serif, sans-serif;
+  font-size: 16px;
+}
+body p {
+  margin: 0;
+  padding: 0;
+}
+.container{
+  border-radius: 20px;
+  width: 350px;
+  height: 500px;
+  background-color:white ;
+  padding: 50px;
+  
+}
+.title{
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px
+}
+.declarative-text{
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+input{
+  width: 320px;
+  height: 50px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  text-align: center;
+}
+hr{
+  color: lightgray;
+  text-align: center;
+  padding: 0;
+  margin-left: 0;
+  width: 330px;
+}
+button{
+  font-weight: 700;
+  margin: 20px 0px;
+  width: 330px;
+  height: 60px;
+  border: none;
+  margin: 50px 0px 20px 0px;
+  border-radius: 8px;
+  background-color: dodgerblue;
+  color: white;
+}
+
+span{
+  color: dodgerblue;
+  text-decoration: underline;
+}
